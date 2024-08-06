@@ -1,0 +1,29 @@
+{
+  "name": "shared-components-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/shared-components-e2e/src",
+  "projectType": "application",
+  "tags": [],
+  "implicitDependencies": ["shared-components"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/shared-components-e2e/cypress.json",
+        "devServerTarget": "shared-components:storybook"
+      },
+      "configurations": {
+        "ci": {
+          "devServerTarget": "shared-components:storybook:ci"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/shared-components-e2e/**/*.{js,ts}"]
+      }
+    }
+  }
+}
